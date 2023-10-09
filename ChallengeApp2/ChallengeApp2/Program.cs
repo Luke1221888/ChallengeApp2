@@ -1,16 +1,32 @@
 ﻿using ChallengeApp2;
 
-var employee = new Employee("Tomek", "Abacki");
+namespace ChallengeApp2
+{
+    class Program
+    {
+        static void Main()
+        {
+            var employee = new Employee("Cezary", "Zetowski");
+            employee.AddGrade(2);
+            employee.AddGrade("Maciej");
+            employee.AddGrade(2000);
+            employee.AddGrade(20);
+            employee.AddGrade("4");
+            employee.AddGrade(1.2444444);
+            employee.AddGrade(900000000000000000);
+           
+            var statistics = employee.GetStatistics();
 
-employee.AddGrade(96);
-employee.AddGrade(44);
-employee.AddGrade(70);
-employee.AddGrade(75);
-employee.AddGrade(71);
-var statistics = employee.GetStatistics();
+            Console.WriteLine($"Największa liczba: {statistics.Max}");
+            Console.WriteLine($"Średnia: { statistics.Average:N2}");
+            Console.WriteLine($"Najmniejsza liczba: {statistics.Min}");
+        }
 
-Console.WriteLine($"Maximal:{statistics.Max}");
-Console.WriteLine($"Minimal:{statistics.Min}");
-Console.WriteLine($"Average:{statistics.Average:N2}");
+    }
+}
+
+
+
+
 
 
