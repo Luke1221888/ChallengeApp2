@@ -7,10 +7,10 @@
         public string Name { get; private set; }
         public string Surname { get; private set; }
 
-        public Employee(string name, string surname)
+        public Employee()
         {
-            Name = name;
-            Surname = surname;
+
+
         }
 
         public void AddGrade(uint grade)
@@ -25,6 +25,52 @@
         {
             float gradeAsFloat = (float)grade;
             AddGrade(gradeAsFloat);
+        }
+
+        public void AddGrade(string grade)
+        {
+            if (float.TryParse(grade, out float result))
+            {
+                this.AddGrade(result);
+            }
+            else if (char.TryParse(grade,  out char charGrade))
+            {
+                AddGrade(charGrade);
+
+            }
+            else
+            {
+                Console.WriteLine($"String {grade} is not number");
+            }
+        }
+        public void AddGrade(char grade)
+        {
+            switch (grade)
+            {
+                case 'A':
+                case 'a':
+                    AddGrade(100);
+                    break;
+                case 'B':
+                case 'b':
+                    AddGrade(80);
+                    break;
+                case 'C':
+                case 'c':
+                    AddGrade(60);
+                    break;
+                case 'D':
+                case 'd':
+                    AddGrade(40);
+                    break;
+                case 'E':
+                case 'e':
+                    AddGrade(20);
+                    break;
+                default:
+                    Console.WriteLine("Wrong letter");
+                    break;
+            }
         }
 
         public void AddGrade(long grade)
@@ -43,7 +89,7 @@
             }
             else
             {
-                Console.WriteLine($"{grade} is invalid score added");
+                Console.WriteLine($"{grade} Dodano niewłaściwą ocenę");
             }
         }
 
@@ -56,17 +102,7 @@
             }
         }
 
-        public void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                Console.WriteLine($"String {grade} is not number");
-            }
-        }
+        
 
         public Statistics GetStatistics()
         {
@@ -82,6 +118,25 @@
                 statistics.Average += grade;
             }
             statistics.Average /= this.grades.Count;
+
+            switch (statistics.Average)
+            {
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+            }
             return statistics;
         }
     }
