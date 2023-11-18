@@ -2,6 +2,7 @@
 {
     public class Employee
     {
+
         private List<float> grades = new List<float>();
 
         public string Name { get; private set; }
@@ -9,7 +10,6 @@
 
         public Employee()
         {
-
 
         }
 
@@ -40,7 +40,7 @@
             }
             else
             {
-                Console.WriteLine($"String {grade} is not number");
+                throw new Exception($"Podano string a nie liczbe");
             }
         }
         public void AddGrade(char grade)
@@ -68,8 +68,8 @@
                     AddGrade(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong letter");
-                    break;
+                    throw new Exception("Niewłaściwa litera");
+
             }
         }
 
@@ -89,7 +89,7 @@
             }
             else
             {
-                Console.WriteLine($"{grade} Dodano niewłaściwą ocenę");
+                throw new Exception("Wyłapano wyjątek: Dodano za małą bądź za dużą liczbę");
             }
         }
 
@@ -101,8 +101,6 @@
                 AddGrade(gradeAsFloat);
             }
         }
-
-        
 
         public Statistics GetStatistics()
         {

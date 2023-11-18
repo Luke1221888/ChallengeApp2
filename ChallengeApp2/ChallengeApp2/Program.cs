@@ -5,7 +5,6 @@ Console.WriteLine("===========================================");
 Console.WriteLine();
 var employee = new Employee();
 
-
 while (true)
 {
     Console.WriteLine("Podaj kolejną ocene pracownika:");
@@ -14,9 +13,14 @@ while (true)
     {
         break;
     }
-    else
+
+    try
     {
         employee.AddGrade(input);
+    }
+    catch (Exception e)
+    {
+        Console.WriteLine($"Wyłapano wyjątek: {e.Message}");
     }
 }
 
