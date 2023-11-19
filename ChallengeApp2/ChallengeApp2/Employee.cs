@@ -1,16 +1,14 @@
 ﻿namespace ChallengeApp2
 {
-    public class Employee
+    public class Employee : Person
     {
 
         private List<float> grades = new List<float>();
 
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
-
-        public Employee()
+        public Employee(string name, string surname, int age, string sex)
+            : base(name, surname, age, sex)
         {
-
+            
         }
 
         public void AddGrade(uint grade)
@@ -33,7 +31,7 @@
             {
                 this.AddGrade(result);
             }
-            else if (char.TryParse(grade,  out char charGrade))
+            else if (char.TryParse(grade, out char charGrade))
             {
                 AddGrade(charGrade);
 
@@ -89,7 +87,7 @@
             }
             else
             {
-                throw new Exception("Wyłapano wyjątek: Dodano za małą bądź za dużą liczbę");
+                throw new Exception("Dodano za małą bądź za dużą liczbę");
             }
         }
 
@@ -102,6 +100,14 @@
             }
         }
 
+        public void WriteEmployeeDetails()
+        {
+            
+            Console.WriteLine($"Imię: {Name}");
+            Console.WriteLine($"Nazwisko: {Surname}");
+            Console.WriteLine($"Wiek: {Age}");
+            Console.WriteLine($"Płeć: {Sex}");
+        }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
