@@ -1,15 +1,30 @@
 ﻿namespace ChallengeApp2
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
 
         private List<float> grades = new List<float>();
 
+
+
         public Employee(string name, string surname, int age, string sex)
-            : base(name, surname, age, sex)
+
         {
-            
+            Name = name;
+            Surname = surname;
+            Age = age;
+            Sex = sex;
+
         }
+
+        public string Name { get; private set; }
+
+        public string Surname { get; private set; }
+
+        public int Age { get; private set; }
+
+        public string Sex { get; private set; }
+
 
         public void AddGrade(uint grade)
         {
@@ -34,11 +49,10 @@
             else if (char.TryParse(grade, out char charGrade))
             {
                 AddGrade(charGrade);
-
             }
             else
             {
-                throw new Exception($"Podano string a nie liczbe");
+                throw new Exception($"Podano nazwę nie będącą ani literą ani liczbą");
             }
         }
         public void AddGrade(char grade)
@@ -100,14 +114,6 @@
             }
         }
 
-        public void WriteEmployeeDetails()
-        {
-            
-            Console.WriteLine($"Imię: {Name}");
-            Console.WriteLine($"Nazwisko: {Surname}");
-            Console.WriteLine($"Wiek: {Age}");
-            Console.WriteLine($"Płeć: {Sex}");
-        }
         public Statistics GetStatistics()
         {
             var statistics = new Statistics();
