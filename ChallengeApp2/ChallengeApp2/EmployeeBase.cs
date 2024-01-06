@@ -4,6 +4,7 @@ namespace ChallengeApp2
     public abstract class EmployeeBase : IEmployee
     {
 
+
         public EmployeeBase(string name, string surname, int age, string sex)
         {
             Name = name;
@@ -12,6 +13,11 @@ namespace ChallengeApp2
             Sex = sex;
         }
 
+
+        public delegate void GradeAddedDelegate(object sender, EventArgs args);
+
+        public abstract event GradeAddedDelegate GradeAdded;
+
         public string Name { get; private set; }
 
         public string Surname { get; private set; }
@@ -19,7 +25,6 @@ namespace ChallengeApp2
         public int Age { get; private set; }
 
         public string Sex { get; private set; }
-
 
 
         public abstract void AddGrade(uint grade);
@@ -48,6 +53,6 @@ namespace ChallengeApp2
 
 
         public abstract Statistics GetStatistics();
-        
+
     }
 }

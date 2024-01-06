@@ -2,7 +2,9 @@
 {
     public interface IEmployee
     {
-            
+
+        
+
         string Name { get; }
 
         string Surname { get; }
@@ -11,7 +13,6 @@
 
         string Sex { get; }
 
-        
         void AddGrade(uint grade);
 
         void AddGrade(int grade);
@@ -28,5 +29,7 @@
 
 
         Statistics GetStatistics();
+        
+        delegate void GradeAddedDelegate(object sender, EventArgs args);
     }
 }

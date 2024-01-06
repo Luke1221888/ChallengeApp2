@@ -1,45 +1,35 @@
-﻿namespace ChallengeApp2
+﻿
+namespace ChallengeApp2
 {
     public class EmployeeInFile : EmployeeBase
     {
         private const string fileName = "grades.txt";
 
-
+        public override event GradeAddedDelegate GradeAdded;
 
         public EmployeeInFile(string name, string surname, int age, string sex)
             : base(name, surname, age, sex)
         {
+
         }
 
         public override void AddGrade(uint grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                float result = grade;
-                writer.WriteLine(result);
-            }
+            float gradeAsFloat = grade;
+            AddGrade(gradeAsFloat);
         }
 
         public override void AddGrade(int grade)
         {
-            using (var writer = File.AppendText(fileName))
-            {
-                float result = grade;
-                writer.WriteLine(result);
-            }
+            float gradeAsFloat = grade;
+            AddGrade(gradeAsFloat);
         }
 
         public override void AddGrade(long grade)
         {
-            
-            {
-                using (var writer = File.AppendText(fileName))
-                {
-                    float result = grade;
-                    writer.WriteLine(result);
-                    
-                }
-            }
+
+            float gradeAsFloat = grade;
+            AddGrade(gradeAsFloat);
         }
 
         public override void AddGrade(float grade)
@@ -49,6 +39,12 @@
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+
+
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
             }
             else
@@ -61,7 +57,7 @@
         {
             if (float.TryParse(grade, out float result))
             {
-                this.AddGrade(result);
+                AddGrade(result);
             }
             else if (char.TryParse(grade, out char charGrade))
             {
@@ -104,20 +100,14 @@
 
         public override void AddGrade(double grade)
         {
-            
-            {
-                using (var writer = File.AppendText(fileName))
-                {
-                    float result = (float)grade;
-                    writer.WriteLine(result);
-                }
-            }
+            float gradeAsFloat = (float)grade;
+            AddGrade(gradeAsFloat);
         }
 
         public override Statistics GetStatistics()
         {
-            var gradesFromFile = this.ReadGradesFromFile();
-            var result = this.CountStatistics(gradesFromFile);
+            var gradesFromFile = ReadGradesFromFile();
+            var result = CountStatistics(gradesFromFile);
             return result;
         }
 
