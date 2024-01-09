@@ -4,8 +4,8 @@
 Console.WriteLine("Witamy w Programie do oceny pracowników");
 Console.WriteLine("===========================================");
 Console.WriteLine();
-var employee = new EmployeeInMemory("Maciej", "Abacki", 27, "Mężczyzna");
-var supervisor = new Supervisor("Tomasz", "Babacki", 40, "Mężczyzna");
+var employee = new EmployeeInFile("Maciej", "Abacki", 27, "Mężczyzna");
+//var supervisor = new Supervisor("Tomasz", "Babacki", 40, "Mężczyzna");
 
 void EmployeeGradeAdded(object sender, EventArgs args)
 {
